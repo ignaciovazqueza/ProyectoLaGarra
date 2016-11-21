@@ -1,0 +1,408 @@
+\hypertarget{RobotArmController_8js}{}\section{Referencia del Archivo /home/sebi/\+Desktop/nv/robot\+\_\+arm\+\_\+controller/\+Robot\+Arm\+Controller.js}
+\label{RobotArmController_8js}\index{/home/sebi/\+Desktop/nv/robot\+\_\+arm\+\_\+controller/\+Robot\+Arm\+Controller.\+js@{/home/sebi/\+Desktop/nv/robot\+\_\+arm\+\_\+controller/\+Robot\+Arm\+Controller.\+js}}
+\subsection*{Funciones}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{RobotArmController_8js_a7b225fcb720e4d5ed2bbf60e28a25e6d}{app} \hyperlink{RobotArmController_8js_a0f1371eb9c345e64740c8ffdf7c9e5dd}{use} (express.\+static(\+\_\+\+\_\+dirname+\char`\"{}/public\char`\"{}))
+\item 
+\hyperlink{RobotArmController_8js_a7b225fcb720e4d5ed2bbf60e28a25e6d}{app} \hyperlink{RobotArmController_8js_a5d634ca427c43ee3225ccf10f3cce030}{get} (\textquotesingle{}/\textquotesingle{}, function(req, res)\{res.\+redirect(\textquotesingle{}index.\+html\textquotesingle{});\})
+\item 
+\hyperlink{RobotArmController_8js_a55f22d498ca401fddca364855629d1d3}{http} \hyperlink{RobotArmController_8js_a8d68a947087da83c87f8b16b5bd6f15e}{listen} (\hyperlink{RobotArmController_8js_a8919360cd4b4bb6c42169b3735ca2a39}{port}, function()\{log.\+info(\textquotesingle{}Servidor escuchando a traves del puerto\%s\textquotesingle{}, \hyperlink{RobotArmController_8js_a8919360cd4b4bb6c42169b3735ca2a39}{port});\})
+\item 
+\hyperlink{RobotArmController_8js_a385c64aaca2b651863bdd2b274a1c31b}{my\+Port} \hyperlink{RobotArmController_8js_a113030e05f74a3168db42788746756db}{on} (\textquotesingle{}open\textquotesingle{}, \hyperlink{RobotArmController_8js_ae2a436086a27b12318861a65dd41d6bd}{on\+Port\+Open})
+\item 
+function \hyperlink{RobotArmController_8js_a40352d015e4e6b4bb37526c860410c4c}{list\+Ports} ()
+\item 
+function \hyperlink{RobotArmController_8js_ae2a436086a27b12318861a65dd41d6bd}{on\+Port\+Open} ()
+\item 
+function \hyperlink{RobotArmController_8js_ad5d31f28b5b01ca010b008fe3cb57946}{setup\+Arm} ()
+\item 
+function \hyperlink{RobotArmController_8js_a36359ef487bc32c09d0f79cf1f0a0637}{initial\+Commands} ()
+\item 
+function \hyperlink{RobotArmController_8js_a4e65d29c48683982baf6de3cebc585f2}{send\+Commands} (commands)
+\item 
+function \hyperlink{RobotArmController_8js_a54823e4368c273a5cb9a2a66f284b65d}{initialize} ()
+\item 
+function \hyperlink{RobotArmController_8js_aa57717846388ba6421639ba5d60ff1e3}{move\+Absolute} (angles)
+\item 
+function \hyperlink{RobotArmController_8js_a9a5ac5ae05291ed13f0f9a7bc1d27867}{move\+Relative} (angles)
+\item 
+function \hyperlink{RobotArmController_8js_a642cf72c4c86be6a7d3856139ac0f464}{verify\+Movement} (angles, \hyperlink{RobotArmController_8js_a9a5ac5ae05291ed13f0f9a7bc1d27867}{move\+Relative})
+\item 
+function \hyperlink{RobotArmController_8js_ac10d69d3857cf11843561f446e227ae6}{format} (angles)
+\item 
+function \hyperlink{RobotArmController_8js_a7cb30ef1c7db92b08a47b0675ecb8a2e}{move\+Arm} (angles)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+var \hyperlink{RobotArmController_8js_a7f3341255b805bd92d1033378a0a0c6b}{express} = require(\textquotesingle{}express\textquotesingle{})
+\begin{DoxyCompactList}\small\item\em Referencia a la libreria express. \end{DoxyCompactList}\item 
+var \hyperlink{RobotArmController_8js_a7b225fcb720e4d5ed2bbf60e28a25e6d}{app} = \hyperlink{RobotArmController_8js_a7f3341255b805bd92d1033378a0a0c6b}{express}()
+\begin{DoxyCompactList}\small\item\em Utiliza la libreria express. \end{DoxyCompactList}\item 
+var \hyperlink{RobotArmController_8js_a55f22d498ca401fddca364855629d1d3}{http} = require(\char`\"{}http\char`\"{}).Server(\hyperlink{RobotArmController_8js_a7b225fcb720e4d5ed2bbf60e28a25e6d}{app})
+\begin{DoxyCompactList}\small\item\em Referencia a la libreria http para crear un servidor. \end{DoxyCompactList}\item 
+var \hyperlink{RobotArmController_8js_ac31a6fa71ee4973814d36937ebb1fa0b}{io} = require(\char`\"{}socket.\+io\char`\"{})(http)
+\begin{DoxyCompactList}\small\item\em Referencia a la libreria socket.\+io para conectarse con el cliente. \end{DoxyCompactList}\item 
+var \hyperlink{RobotArmController_8js_a506adbd94b0fd785943f2849524942e8}{Serialport} = require(\textquotesingle{}serialport\textquotesingle{})
+\begin{DoxyCompactList}\small\item\em Referencia a la libreria serialport para setear la configuracion del puerto utilizado. \end{DoxyCompactList}\item 
+var \hyperlink{RobotArmController_8js_a2e8c93fb3e89264e6fb27c68de934ea6}{math} = require(\textquotesingle{}mathjs\textquotesingle{})
+\begin{DoxyCompactList}\small\item\em Referencia a la libreria mathjs. \end{DoxyCompactList}\item 
+var \hyperlink{RobotArmController_8js_a27593ddfeef6c6074e893143adb12e58}{max\+Limit}
+\begin{DoxyCompactList}\small\item\em Contiene la posicion maxima permitida. \end{DoxyCompactList}\item 
+var \hyperlink{RobotArmController_8js_a49f9aeef334bca024f4bc5270cb93048}{min\+Limit}
+\begin{DoxyCompactList}\small\item\em Contiene la posicion minima permitida. \end{DoxyCompactList}\item 
+var \hyperlink{RobotArmController_8js_ae7520374ccc2205a3d6a577820907578}{initial\+Pos}
+\begin{DoxyCompactList}\small\item\em Contiene la posicion inicial del robot. \end{DoxyCompactList}\item 
+var \hyperlink{RobotArmController_8js_ad13d4d217325bb3de8b67cd76a2edfc5}{current\+Pos}
+\begin{DoxyCompactList}\small\item\em Contiene la posicion actual del robot. \end{DoxyCompactList}\item 
+const \hyperlink{RobotArmController_8js_a2f7d0ac9a16842ea88d3f09432aeab30}{top\+Left} = \mbox{[}40.\+0,0.\+0,75.\+0,0.\+0,0.\+0\mbox{]}
+\begin{DoxyCompactList}\small\item\em Contiene las coordenadas para referenciarse a la posicion de arriba a la izquierda utilizada. \end{DoxyCompactList}\item 
+const \hyperlink{RobotArmController_8js_a78d06d32a52358a5806f5fe6b2344181}{top} = \mbox{[}0.\+0,0.\+0,75.\+0,0.\+0,0.\+0\mbox{]}
+\begin{DoxyCompactList}\small\item\em Contiene las coordenadas para referenciarse a la posicion de arriba al medio utilizada. \end{DoxyCompactList}\item 
+const \hyperlink{RobotArmController_8js_a69751365303ed140fcfe82c3d99f8e8d}{top\+Right} = \mbox{[}-\/40.\+0,0.\+0,75.\+0,0.\+0,0.\+0\mbox{]}
+\begin{DoxyCompactList}\small\item\em Contiene las coordenadas para referenciarse a la posicion de arriba a la derecha utilizada. \end{DoxyCompactList}\item 
+const \hyperlink{RobotArmController_8js_aeaca33f398df5aeb20adc58594e96e64}{bottom} = \mbox{[}0.\+0,0.\+0,115.\+0,0.\+0,0.\+0\mbox{]}
+\begin{DoxyCompactList}\small\item\em Contiene las coordenadas para referenciarse a la posicion de abajo al medio utilizada. \end{DoxyCompactList}\item 
+const \hyperlink{RobotArmController_8js_a4adc121b408ba6e46b87107246bbe6d1}{bottom\+Left} = \mbox{[}40.\+0,0.\+0,115.\+0,0.\+0,0.\+0\mbox{]}
+\begin{DoxyCompactList}\small\item\em Contiene las coordenadas para referenciarse a la posicion de abajo a la izquierda utilizada. \end{DoxyCompactList}\item 
+const \hyperlink{RobotArmController_8js_a5ce99d3cae619aa624f6503e6c78854a}{bottom\+Right} = \mbox{[}-\/40.\+0,0.\+0,115.\+0,0.\+0,0.\+0\mbox{]}
+\begin{DoxyCompactList}\small\item\em Contiene las coordenadas para referenciarse a la posicion de abajo a la derecha utilizada. \end{DoxyCompactList}\item 
+const \hyperlink{RobotArmController_8js_aea2e3506c1082fde9ee5b2a292bda1c5}{center} = \mbox{[}0.\+0,0.\+0,90.\+0,0.\+0,0.\+0\mbox{]}
+\begin{DoxyCompactList}\small\item\em Contiene las coordenadas para referenciarse a la posicion de centro absoluto utilizada. \end{DoxyCompactList}\item 
+const \hyperlink{RobotArmController_8js_a6c7e5f9c0d1a7ce5a205c24cc75b881a}{left} = \mbox{[}40.\+0,0.\+0,90.\+0,0.\+0,0.\+0\mbox{]}
+\begin{DoxyCompactList}\small\item\em Contiene las coordenadas para referenciarse a la posicion del centro a la izquierda utilizada. \end{DoxyCompactList}\item 
+const \hyperlink{RobotArmController_8js_adcf5bb43a9792563db7e8c6c3cca2257}{right} = \mbox{[}-\/40.\+0,0.\+0,90.\+0,0.\+0,0.\+0\mbox{]}
+\begin{DoxyCompactList}\small\item\em Contiene las coordenadas para referenciarse a la posicion del centro a la derecha utilizada. \end{DoxyCompactList}\item 
+var \hyperlink{RobotArmController_8js_a771bf310facef667e091c5c90098434d}{Log} = require(\textquotesingle{}\hyperlink{RobotArmController_8js_aefe23c2cbd8b153a63929a8306f43c1d}{log}\textquotesingle{})
+\begin{DoxyCompactList}\small\item\em Referencia a la libreria log. \end{DoxyCompactList}\item 
+var \hyperlink{RobotArmController_8js_aefe23c2cbd8b153a63929a8306f43c1d}{log} = new \hyperlink{RobotArmController_8js_a771bf310facef667e091c5c90098434d}{Log}(\textquotesingle{}debug\textquotesingle{})
+\begin{DoxyCompactList}\small\item\em Utiliza la libreria log. \end{DoxyCompactList}\item 
+var \hyperlink{RobotArmController_8js_a8919360cd4b4bb6c42169b3735ca2a39}{port} = process.\+env.\+P\+O\+RT $\vert$$\vert$ 3000
+\begin{DoxyCompactList}\small\item\em Contiene la referencia del puerto utilizado. \end{DoxyCompactList}\item 
+var \hyperlink{RobotArmController_8js_a385c64aaca2b651863bdd2b274a1c31b}{my\+Port}
+\begin{DoxyCompactList}\small\item\em Utiliza la libreria serialport para setear la configuracion del puerto utilizado. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Documentación de las funciones}
+\index{Robot\+Arm\+Controller.\+js@{Robot\+Arm\+Controller.\+js}!format@{format}}
+\index{format@{format}!Robot\+Arm\+Controller.\+js@{Robot\+Arm\+Controller.\+js}}
+\subsubsection[{\texorpdfstring{format(angles)}{format(angles)}}]{\setlength{\rightskip}{0pt plus 5cm}function format (
+\begin{DoxyParamCaption}
+\item[{}]{angles}
+\end{DoxyParamCaption}
+)}\hypertarget{RobotArmController_8js_ac10d69d3857cf11843561f446e227ae6}{}\label{RobotArmController_8js_ac10d69d3857cf11843561f446e227ae6}
+Formatea el conjunto de coordenadas pasadas como parametro para que los pueda interpretar de forma correcta el brazo robotico. 
+\begin{DoxyParams}{Parámetros}
+{\em angles} & Son las coordenadas representadas como arreglo de numeros que seran tomados como angulos para el brazo robotico. \\
+\hline
+\end{DoxyParams}
+\index{Robot\+Arm\+Controller.\+js@{Robot\+Arm\+Controller.\+js}!get@{get}}
+\index{get@{get}!Robot\+Arm\+Controller.\+js@{Robot\+Arm\+Controller.\+js}}
+\subsubsection[{\texorpdfstring{get(\textquotesingle{}/\textquotesingle{}, function(req, res)\lcurly{}res.\+redirect(\textquotesingle{}index.\+html\textquotesingle{});\rcurly{})}{get('/', function(req, res)\{res.redirect('index.html');\})}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf app} get (
+\begin{DoxyParamCaption}
+\item[{\textquotesingle{}/\textquotesingle{}}]{, }
+\item[{function(req, res)\{res.\+redirect(\textquotesingle{}index.\+html\textquotesingle{});\}}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{RobotArmController_8js_a5d634ca427c43ee3225ccf10f3cce030}{}\label{RobotArmController_8js_a5d634ca427c43ee3225ccf10f3cce030}
+\index{Robot\+Arm\+Controller.\+js@{Robot\+Arm\+Controller.\+js}!initial\+Commands@{initial\+Commands}}
+\index{initial\+Commands@{initial\+Commands}!Robot\+Arm\+Controller.\+js@{Robot\+Arm\+Controller.\+js}}
+\subsubsection[{\texorpdfstring{initial\+Commands()}{initialCommands()}}]{\setlength{\rightskip}{0pt plus 5cm}function initial\+Commands (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{RobotArmController_8js_a36359ef487bc32c09d0f79cf1f0a0637}{}\label{RobotArmController_8js_a36359ef487bc32c09d0f79cf1f0a0637}
+Setea los comandos iniciales que deberan ser ejecutados para el correcto funcionamiento del brazo robotico. \index{Robot\+Arm\+Controller.\+js@{Robot\+Arm\+Controller.\+js}!initialize@{initialize}}
+\index{initialize@{initialize}!Robot\+Arm\+Controller.\+js@{Robot\+Arm\+Controller.\+js}}
+\subsubsection[{\texorpdfstring{initialize()}{initialize()}}]{\setlength{\rightskip}{0pt plus 5cm}function initialize (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{RobotArmController_8js_a54823e4368c273a5cb9a2a66f284b65d}{}\label{RobotArmController_8js_a54823e4368c273a5cb9a2a66f284b65d}
+Mueve el brazo robotico a la posicion inicial seteada. \index{Robot\+Arm\+Controller.\+js@{Robot\+Arm\+Controller.\+js}!listen@{listen}}
+\index{listen@{listen}!Robot\+Arm\+Controller.\+js@{Robot\+Arm\+Controller.\+js}}
+\subsubsection[{\texorpdfstring{listen(port, function()\lcurly{}log.\+info(\textquotesingle{}\+Servidor escuchando a traves del puerto\%s\textquotesingle{}, port);\rcurly{})}{listen(port, function()\{log.info('Servidor escuchando a traves del puerto%s', port);\})}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf http} listen (
+\begin{DoxyParamCaption}
+\item[{{\bf port}}]{, }
+\item[{function()\{log.\+info(\textquotesingle{}Servidor escuchando a traves del puerto\%s\textquotesingle{}, {\bf port});\}}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{RobotArmController_8js_a8d68a947087da83c87f8b16b5bd6f15e}{}\label{RobotArmController_8js_a8d68a947087da83c87f8b16b5bd6f15e}
+\index{Robot\+Arm\+Controller.\+js@{Robot\+Arm\+Controller.\+js}!list\+Ports@{list\+Ports}}
+\index{list\+Ports@{list\+Ports}!Robot\+Arm\+Controller.\+js@{Robot\+Arm\+Controller.\+js}}
+\subsubsection[{\texorpdfstring{list\+Ports()}{listPorts()}}]{\setlength{\rightskip}{0pt plus 5cm}function list\+Ports (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{RobotArmController_8js_a40352d015e4e6b4bb37526c860410c4c}{}\label{RobotArmController_8js_a40352d015e4e6b4bb37526c860410c4c}
+Imprime los puertos seriales disponibles. \index{Robot\+Arm\+Controller.\+js@{Robot\+Arm\+Controller.\+js}!move\+Absolute@{move\+Absolute}}
+\index{move\+Absolute@{move\+Absolute}!Robot\+Arm\+Controller.\+js@{Robot\+Arm\+Controller.\+js}}
+\subsubsection[{\texorpdfstring{move\+Absolute(angles)}{moveAbsolute(angles)}}]{\setlength{\rightskip}{0pt plus 5cm}function move\+Absolute (
+\begin{DoxyParamCaption}
+\item[{}]{angles}
+\end{DoxyParamCaption}
+)}\hypertarget{RobotArmController_8js_aa57717846388ba6421639ba5d60ff1e3}{}\label{RobotArmController_8js_aa57717846388ba6421639ba5d60ff1e3}
+Mueve el brazo robotico a una posicion absoluta. 
+\begin{DoxyParams}{Parámetros}
+{\em angles} & Son las coordenadas representadas como arreglo de numeros que seran tomados como angulos para el brazo robotico. \\
+\hline
+\end{DoxyParams}
+\index{Robot\+Arm\+Controller.\+js@{Robot\+Arm\+Controller.\+js}!move\+Arm@{move\+Arm}}
+\index{move\+Arm@{move\+Arm}!Robot\+Arm\+Controller.\+js@{Robot\+Arm\+Controller.\+js}}
+\subsubsection[{\texorpdfstring{move\+Arm(angles)}{moveArm(angles)}}]{\setlength{\rightskip}{0pt plus 5cm}function move\+Arm (
+\begin{DoxyParamCaption}
+\item[{}]{angles}
+\end{DoxyParamCaption}
+)}\hypertarget{RobotArmController_8js_a7cb30ef1c7db92b08a47b0675ecb8a2e}{}\label{RobotArmController_8js_a7cb30ef1c7db92b08a47b0675ecb8a2e}
+Envia los comandos necesarios para que el robot se mueva a las coordenadas pasadas como parametro. 
+\begin{DoxyParams}{Parámetros}
+{\em angles} & Son las coordenadas representadas como arreglo de numeros que seran tomados como angulos para el brazo robotico. \\
+\hline
+\end{DoxyParams}
+\index{Robot\+Arm\+Controller.\+js@{Robot\+Arm\+Controller.\+js}!move\+Relative@{move\+Relative}}
+\index{move\+Relative@{move\+Relative}!Robot\+Arm\+Controller.\+js@{Robot\+Arm\+Controller.\+js}}
+\subsubsection[{\texorpdfstring{move\+Relative(angles)}{moveRelative(angles)}}]{\setlength{\rightskip}{0pt plus 5cm}function move\+Relative (
+\begin{DoxyParamCaption}
+\item[{}]{angles}
+\end{DoxyParamCaption}
+)}\hypertarget{RobotArmController_8js_a9a5ac5ae05291ed13f0f9a7bc1d27867}{}\label{RobotArmController_8js_a9a5ac5ae05291ed13f0f9a7bc1d27867}
+Mueve el brazo robotico a una posicion relativa. 
+\begin{DoxyParams}{Parámetros}
+{\em angles} & Son las coordenadas representadas como arreglo de numeros que seran tomados como angulos para el brazo robotico. \\
+\hline
+\end{DoxyParams}
+\index{Robot\+Arm\+Controller.\+js@{Robot\+Arm\+Controller.\+js}!on@{on}}
+\index{on@{on}!Robot\+Arm\+Controller.\+js@{Robot\+Arm\+Controller.\+js}}
+\subsubsection[{\texorpdfstring{on(\textquotesingle{}open\textquotesingle{}, on\+Port\+Open)}{on('open', onPortOpen)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf io} sockets on (
+\begin{DoxyParamCaption}
+\item[{\textquotesingle{}open\textquotesingle{}}]{, }
+\item[{{\bf on\+Port\+Open}}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{RobotArmController_8js_a113030e05f74a3168db42788746756db}{}\label{RobotArmController_8js_a113030e05f74a3168db42788746756db}
+\index{Robot\+Arm\+Controller.\+js@{Robot\+Arm\+Controller.\+js}!on\+Port\+Open@{on\+Port\+Open}}
+\index{on\+Port\+Open@{on\+Port\+Open}!Robot\+Arm\+Controller.\+js@{Robot\+Arm\+Controller.\+js}}
+\subsubsection[{\texorpdfstring{on\+Port\+Open()}{onPortOpen()}}]{\setlength{\rightskip}{0pt plus 5cm}function on\+Port\+Open (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{RobotArmController_8js_ae2a436086a27b12318861a65dd41d6bd}{}\label{RobotArmController_8js_ae2a436086a27b12318861a65dd41d6bd}
+Se encarga de setear las variables pertinentes al brazo robotico y ejecutar los comandos iniciales para que comience el funcionamiento del mismo \index{Robot\+Arm\+Controller.\+js@{Robot\+Arm\+Controller.\+js}!send\+Commands@{send\+Commands}}
+\index{send\+Commands@{send\+Commands}!Robot\+Arm\+Controller.\+js@{Robot\+Arm\+Controller.\+js}}
+\subsubsection[{\texorpdfstring{send\+Commands(commands)}{sendCommands(commands)}}]{\setlength{\rightskip}{0pt plus 5cm}function send\+Commands (
+\begin{DoxyParamCaption}
+\item[{}]{commands}
+\end{DoxyParamCaption}
+)}\hypertarget{RobotArmController_8js_a4e65d29c48683982baf6de3cebc585f2}{}\label{RobotArmController_8js_a4e65d29c48683982baf6de3cebc585f2}
+Envia al puerto serie los comandos chequeados que se le pasan por parametro. 
+\begin{DoxyParams}{Parámetros}
+{\em commands} & Es un arreglo que contiene los comandos que se le quieren mandar al brazo robotico. \\
+\hline
+\end{DoxyParams}
+\index{Robot\+Arm\+Controller.\+js@{Robot\+Arm\+Controller.\+js}!setup\+Arm@{setup\+Arm}}
+\index{setup\+Arm@{setup\+Arm}!Robot\+Arm\+Controller.\+js@{Robot\+Arm\+Controller.\+js}}
+\subsubsection[{\texorpdfstring{setup\+Arm()}{setupArm()}}]{\setlength{\rightskip}{0pt plus 5cm}function setup\+Arm (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{RobotArmController_8js_ad5d31f28b5b01ca010b008fe3cb57946}{}\label{RobotArmController_8js_ad5d31f28b5b01ca010b008fe3cb57946}
+Setea los valores que seran utilizados para el correcto funcionamiento del brazo robotico. \index{Robot\+Arm\+Controller.\+js@{Robot\+Arm\+Controller.\+js}!use@{use}}
+\index{use@{use}!Robot\+Arm\+Controller.\+js@{Robot\+Arm\+Controller.\+js}}
+\subsubsection[{\texorpdfstring{use(express.\+static(\+\_\+\+\_\+dirname+""/public""))}{use(express.static(__dirname+"/public"))}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf app} use (
+\begin{DoxyParamCaption}
+\item[{express.}]{static\+\_\+\+\_\+dirname+\char`\"{}/public\char`\"{}}
+\end{DoxyParamCaption}
+)}\hypertarget{RobotArmController_8js_a0f1371eb9c345e64740c8ffdf7c9e5dd}{}\label{RobotArmController_8js_a0f1371eb9c345e64740c8ffdf7c9e5dd}
+\index{Robot\+Arm\+Controller.\+js@{Robot\+Arm\+Controller.\+js}!verify\+Movement@{verify\+Movement}}
+\index{verify\+Movement@{verify\+Movement}!Robot\+Arm\+Controller.\+js@{Robot\+Arm\+Controller.\+js}}
+\subsubsection[{\texorpdfstring{verify\+Movement(angles, move\+Relative)}{verifyMovement(angles, moveRelative)}}]{\setlength{\rightskip}{0pt plus 5cm}function verify\+Movement (
+\begin{DoxyParamCaption}
+\item[{}]{angles, }
+\item[{}]{move\+Relative}
+\end{DoxyParamCaption}
+)}\hypertarget{RobotArmController_8js_a642cf72c4c86be6a7d3856139ac0f464}{}\label{RobotArmController_8js_a642cf72c4c86be6a7d3856139ac0f464}
+Verifica que el movimiento requerido esta dentro de los limites del alcance del brazo robotico para luego moverlo a la posicion pasada como parametro. 
+\begin{DoxyParams}{Parámetros}
+{\em angles} & Son las coordenadas representadas como arreglo de numeros que seran tomados como angulos para el brazo robotico. \\
+\hline
+{\em move\+Relative} & Es un booleano que hace a referencia a un movimiento relativo si es verdadero o a un movimiento absoluto si es falso. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Documentación de las variables}
+\index{Robot\+Arm\+Controller.\+js@{Robot\+Arm\+Controller.\+js}!app@{app}}
+\index{app@{app}!Robot\+Arm\+Controller.\+js@{Robot\+Arm\+Controller.\+js}}
+\subsubsection[{\texorpdfstring{app}{app}}]{\setlength{\rightskip}{0pt plus 5cm}var app = {\bf express}()}\hypertarget{RobotArmController_8js_a7b225fcb720e4d5ed2bbf60e28a25e6d}{}\label{RobotArmController_8js_a7b225fcb720e4d5ed2bbf60e28a25e6d}
+
+
+Utiliza la libreria express. 
+
+\index{Robot\+Arm\+Controller.\+js@{Robot\+Arm\+Controller.\+js}!bottom@{bottom}}
+\index{bottom@{bottom}!Robot\+Arm\+Controller.\+js@{Robot\+Arm\+Controller.\+js}}
+\subsubsection[{\texorpdfstring{bottom}{bottom}}]{\setlength{\rightskip}{0pt plus 5cm}const bottom = \mbox{[}0.\+0,0.\+0,115.\+0,0.\+0,0.\+0\mbox{]}}\hypertarget{RobotArmController_8js_aeaca33f398df5aeb20adc58594e96e64}{}\label{RobotArmController_8js_aeaca33f398df5aeb20adc58594e96e64}
+
+
+Contiene las coordenadas para referenciarse a la posicion de abajo al medio utilizada. 
+
+\index{Robot\+Arm\+Controller.\+js@{Robot\+Arm\+Controller.\+js}!bottom\+Left@{bottom\+Left}}
+\index{bottom\+Left@{bottom\+Left}!Robot\+Arm\+Controller.\+js@{Robot\+Arm\+Controller.\+js}}
+\subsubsection[{\texorpdfstring{bottom\+Left}{bottomLeft}}]{\setlength{\rightskip}{0pt plus 5cm}const bottom\+Left = \mbox{[}40.\+0,0.\+0,115.\+0,0.\+0,0.\+0\mbox{]}}\hypertarget{RobotArmController_8js_a4adc121b408ba6e46b87107246bbe6d1}{}\label{RobotArmController_8js_a4adc121b408ba6e46b87107246bbe6d1}
+
+
+Contiene las coordenadas para referenciarse a la posicion de abajo a la izquierda utilizada. 
+
+\index{Robot\+Arm\+Controller.\+js@{Robot\+Arm\+Controller.\+js}!bottom\+Right@{bottom\+Right}}
+\index{bottom\+Right@{bottom\+Right}!Robot\+Arm\+Controller.\+js@{Robot\+Arm\+Controller.\+js}}
+\subsubsection[{\texorpdfstring{bottom\+Right}{bottomRight}}]{\setlength{\rightskip}{0pt plus 5cm}const bottom\+Right = \mbox{[}-\/40.\+0,0.\+0,115.\+0,0.\+0,0.\+0\mbox{]}}\hypertarget{RobotArmController_8js_a5ce99d3cae619aa624f6503e6c78854a}{}\label{RobotArmController_8js_a5ce99d3cae619aa624f6503e6c78854a}
+
+
+Contiene las coordenadas para referenciarse a la posicion de abajo a la derecha utilizada. 
+
+\index{Robot\+Arm\+Controller.\+js@{Robot\+Arm\+Controller.\+js}!center@{center}}
+\index{center@{center}!Robot\+Arm\+Controller.\+js@{Robot\+Arm\+Controller.\+js}}
+\subsubsection[{\texorpdfstring{center}{center}}]{\setlength{\rightskip}{0pt plus 5cm}const center = \mbox{[}0.\+0,0.\+0,90.\+0,0.\+0,0.\+0\mbox{]}}\hypertarget{RobotArmController_8js_aea2e3506c1082fde9ee5b2a292bda1c5}{}\label{RobotArmController_8js_aea2e3506c1082fde9ee5b2a292bda1c5}
+
+
+Contiene las coordenadas para referenciarse a la posicion de centro absoluto utilizada. 
+
+\index{Robot\+Arm\+Controller.\+js@{Robot\+Arm\+Controller.\+js}!current\+Pos@{current\+Pos}}
+\index{current\+Pos@{current\+Pos}!Robot\+Arm\+Controller.\+js@{Robot\+Arm\+Controller.\+js}}
+\subsubsection[{\texorpdfstring{current\+Pos}{currentPos}}]{\setlength{\rightskip}{0pt plus 5cm}var current\+Pos}\hypertarget{RobotArmController_8js_ad13d4d217325bb3de8b67cd76a2edfc5}{}\label{RobotArmController_8js_ad13d4d217325bb3de8b67cd76a2edfc5}
+
+
+Contiene la posicion actual del robot. 
+
+\index{Robot\+Arm\+Controller.\+js@{Robot\+Arm\+Controller.\+js}!express@{express}}
+\index{express@{express}!Robot\+Arm\+Controller.\+js@{Robot\+Arm\+Controller.\+js}}
+\subsubsection[{\texorpdfstring{express}{express}}]{\setlength{\rightskip}{0pt plus 5cm}var express = require(\textquotesingle{}express\textquotesingle{})}\hypertarget{RobotArmController_8js_a7f3341255b805bd92d1033378a0a0c6b}{}\label{RobotArmController_8js_a7f3341255b805bd92d1033378a0a0c6b}
+
+
+Referencia a la libreria express. 
+
+\index{Robot\+Arm\+Controller.\+js@{Robot\+Arm\+Controller.\+js}!http@{http}}
+\index{http@{http}!Robot\+Arm\+Controller.\+js@{Robot\+Arm\+Controller.\+js}}
+\subsubsection[{\texorpdfstring{http}{http}}]{\setlength{\rightskip}{0pt plus 5cm}var http = require(\char`\"{}http\char`\"{}).Server({\bf app})}\hypertarget{RobotArmController_8js_a55f22d498ca401fddca364855629d1d3}{}\label{RobotArmController_8js_a55f22d498ca401fddca364855629d1d3}
+
+
+Referencia a la libreria http para crear un servidor. 
+
+\index{Robot\+Arm\+Controller.\+js@{Robot\+Arm\+Controller.\+js}!initial\+Pos@{initial\+Pos}}
+\index{initial\+Pos@{initial\+Pos}!Robot\+Arm\+Controller.\+js@{Robot\+Arm\+Controller.\+js}}
+\subsubsection[{\texorpdfstring{initial\+Pos}{initialPos}}]{\setlength{\rightskip}{0pt plus 5cm}var initial\+Pos}\hypertarget{RobotArmController_8js_ae7520374ccc2205a3d6a577820907578}{}\label{RobotArmController_8js_ae7520374ccc2205a3d6a577820907578}
+
+
+Contiene la posicion inicial del robot. 
+
+\index{Robot\+Arm\+Controller.\+js@{Robot\+Arm\+Controller.\+js}!io@{io}}
+\index{io@{io}!Robot\+Arm\+Controller.\+js@{Robot\+Arm\+Controller.\+js}}
+\subsubsection[{\texorpdfstring{io}{io}}]{\setlength{\rightskip}{0pt plus 5cm}var io = require(\char`\"{}socket.\+io\char`\"{})(http)}\hypertarget{RobotArmController_8js_ac31a6fa71ee4973814d36937ebb1fa0b}{}\label{RobotArmController_8js_ac31a6fa71ee4973814d36937ebb1fa0b}
+
+
+Referencia a la libreria socket.\+io para conectarse con el cliente. 
+
+\index{Robot\+Arm\+Controller.\+js@{Robot\+Arm\+Controller.\+js}!left@{left}}
+\index{left@{left}!Robot\+Arm\+Controller.\+js@{Robot\+Arm\+Controller.\+js}}
+\subsubsection[{\texorpdfstring{left}{left}}]{\setlength{\rightskip}{0pt plus 5cm}const left = \mbox{[}40.\+0,0.\+0,90.\+0,0.\+0,0.\+0\mbox{]}}\hypertarget{RobotArmController_8js_a6c7e5f9c0d1a7ce5a205c24cc75b881a}{}\label{RobotArmController_8js_a6c7e5f9c0d1a7ce5a205c24cc75b881a}
+
+
+Contiene las coordenadas para referenciarse a la posicion del centro a la izquierda utilizada. 
+
+\index{Robot\+Arm\+Controller.\+js@{Robot\+Arm\+Controller.\+js}!Log@{Log}}
+\index{Log@{Log}!Robot\+Arm\+Controller.\+js@{Robot\+Arm\+Controller.\+js}}
+\subsubsection[{\texorpdfstring{Log}{Log}}]{\setlength{\rightskip}{0pt plus 5cm}var Log = require(\textquotesingle{}{\bf log}\textquotesingle{})}\hypertarget{RobotArmController_8js_a771bf310facef667e091c5c90098434d}{}\label{RobotArmController_8js_a771bf310facef667e091c5c90098434d}
+
+
+Referencia a la libreria log. 
+
+\index{Robot\+Arm\+Controller.\+js@{Robot\+Arm\+Controller.\+js}!log@{log}}
+\index{log@{log}!Robot\+Arm\+Controller.\+js@{Robot\+Arm\+Controller.\+js}}
+\subsubsection[{\texorpdfstring{log}{log}}]{\setlength{\rightskip}{0pt plus 5cm}var log = new {\bf Log}(\textquotesingle{}debug\textquotesingle{})}\hypertarget{RobotArmController_8js_aefe23c2cbd8b153a63929a8306f43c1d}{}\label{RobotArmController_8js_aefe23c2cbd8b153a63929a8306f43c1d}
+
+
+Utiliza la libreria log. 
+
+\index{Robot\+Arm\+Controller.\+js@{Robot\+Arm\+Controller.\+js}!math@{math}}
+\index{math@{math}!Robot\+Arm\+Controller.\+js@{Robot\+Arm\+Controller.\+js}}
+\subsubsection[{\texorpdfstring{math}{math}}]{\setlength{\rightskip}{0pt plus 5cm}var math = require(\textquotesingle{}mathjs\textquotesingle{})}\hypertarget{RobotArmController_8js_a2e8c93fb3e89264e6fb27c68de934ea6}{}\label{RobotArmController_8js_a2e8c93fb3e89264e6fb27c68de934ea6}
+
+
+Referencia a la libreria mathjs. 
+
+\index{Robot\+Arm\+Controller.\+js@{Robot\+Arm\+Controller.\+js}!max\+Limit@{max\+Limit}}
+\index{max\+Limit@{max\+Limit}!Robot\+Arm\+Controller.\+js@{Robot\+Arm\+Controller.\+js}}
+\subsubsection[{\texorpdfstring{max\+Limit}{maxLimit}}]{\setlength{\rightskip}{0pt plus 5cm}var max\+Limit}\hypertarget{RobotArmController_8js_a27593ddfeef6c6074e893143adb12e58}{}\label{RobotArmController_8js_a27593ddfeef6c6074e893143adb12e58}
+
+
+Contiene la posicion maxima permitida. 
+
+\index{Robot\+Arm\+Controller.\+js@{Robot\+Arm\+Controller.\+js}!min\+Limit@{min\+Limit}}
+\index{min\+Limit@{min\+Limit}!Robot\+Arm\+Controller.\+js@{Robot\+Arm\+Controller.\+js}}
+\subsubsection[{\texorpdfstring{min\+Limit}{minLimit}}]{\setlength{\rightskip}{0pt plus 5cm}var min\+Limit}\hypertarget{RobotArmController_8js_a49f9aeef334bca024f4bc5270cb93048}{}\label{RobotArmController_8js_a49f9aeef334bca024f4bc5270cb93048}
+
+
+Contiene la posicion minima permitida. 
+
+\index{Robot\+Arm\+Controller.\+js@{Robot\+Arm\+Controller.\+js}!my\+Port@{my\+Port}}
+\index{my\+Port@{my\+Port}!Robot\+Arm\+Controller.\+js@{Robot\+Arm\+Controller.\+js}}
+\subsubsection[{\texorpdfstring{my\+Port}{myPort}}]{\setlength{\rightskip}{0pt plus 5cm}var my\+Port}\hypertarget{RobotArmController_8js_a385c64aaca2b651863bdd2b274a1c31b}{}\label{RobotArmController_8js_a385c64aaca2b651863bdd2b274a1c31b}
+{\bfseries Valor inicial\+:}
+\begin{DoxyCode}
+= \textcolor{keyword}{new} \hyperlink{RobotArmController_8js_a506adbd94b0fd785943f2849524942e8}{Serialport}(\textcolor{stringliteral}{'/dev/cu.wchusbserial1420'}, \{
+          baudRate: 9600,
+          dataBits: 8,
+          parity: \textcolor{stringliteral}{"even"},
+          stopBits: 2,
+          rtscts: \textcolor{keyword}{true},
+          parser: \hyperlink{RobotArmController_8js_a506adbd94b0fd785943f2849524942e8}{Serialport}.parsers.readline(\textcolor{stringliteral}{"\(\backslash\)n"})
+\})
+\end{DoxyCode}
+
+
+Utiliza la libreria serialport para setear la configuracion del puerto utilizado. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em my\+Port} & El nombre utilizado como primer parametro se puede obtener con el metodo \hyperlink{RobotArmController_8js_a40352d015e4e6b4bb37526c860410c4c}{list\+Ports()} \\
+\hline
+\end{DoxyParams}
+\index{Robot\+Arm\+Controller.\+js@{Robot\+Arm\+Controller.\+js}!port@{port}}
+\index{port@{port}!Robot\+Arm\+Controller.\+js@{Robot\+Arm\+Controller.\+js}}
+\subsubsection[{\texorpdfstring{port}{port}}]{\setlength{\rightskip}{0pt plus 5cm}var port = process.\+env.\+P\+O\+RT $\vert$$\vert$ 3000}\hypertarget{RobotArmController_8js_a8919360cd4b4bb6c42169b3735ca2a39}{}\label{RobotArmController_8js_a8919360cd4b4bb6c42169b3735ca2a39}
+
+
+Contiene la referencia del puerto utilizado. 
+
+\index{Robot\+Arm\+Controller.\+js@{Robot\+Arm\+Controller.\+js}!right@{right}}
+\index{right@{right}!Robot\+Arm\+Controller.\+js@{Robot\+Arm\+Controller.\+js}}
+\subsubsection[{\texorpdfstring{right}{right}}]{\setlength{\rightskip}{0pt plus 5cm}const right = \mbox{[}-\/40.\+0,0.\+0,90.\+0,0.\+0,0.\+0\mbox{]}}\hypertarget{RobotArmController_8js_adcf5bb43a9792563db7e8c6c3cca2257}{}\label{RobotArmController_8js_adcf5bb43a9792563db7e8c6c3cca2257}
+
+
+Contiene las coordenadas para referenciarse a la posicion del centro a la derecha utilizada. 
+
+\index{Robot\+Arm\+Controller.\+js@{Robot\+Arm\+Controller.\+js}!Serialport@{Serialport}}
+\index{Serialport@{Serialport}!Robot\+Arm\+Controller.\+js@{Robot\+Arm\+Controller.\+js}}
+\subsubsection[{\texorpdfstring{Serialport}{Serialport}}]{\setlength{\rightskip}{0pt plus 5cm}var Serialport = require(\textquotesingle{}serialport\textquotesingle{})}\hypertarget{RobotArmController_8js_a506adbd94b0fd785943f2849524942e8}{}\label{RobotArmController_8js_a506adbd94b0fd785943f2849524942e8}
+
+
+Referencia a la libreria serialport para setear la configuracion del puerto utilizado. 
+
+\index{Robot\+Arm\+Controller.\+js@{Robot\+Arm\+Controller.\+js}!top@{top}}
+\index{top@{top}!Robot\+Arm\+Controller.\+js@{Robot\+Arm\+Controller.\+js}}
+\subsubsection[{\texorpdfstring{top}{top}}]{\setlength{\rightskip}{0pt plus 5cm}const top = \mbox{[}0.\+0,0.\+0,75.\+0,0.\+0,0.\+0\mbox{]}}\hypertarget{RobotArmController_8js_a78d06d32a52358a5806f5fe6b2344181}{}\label{RobotArmController_8js_a78d06d32a52358a5806f5fe6b2344181}
+
+
+Contiene las coordenadas para referenciarse a la posicion de arriba al medio utilizada. 
+
+\index{Robot\+Arm\+Controller.\+js@{Robot\+Arm\+Controller.\+js}!top\+Left@{top\+Left}}
+\index{top\+Left@{top\+Left}!Robot\+Arm\+Controller.\+js@{Robot\+Arm\+Controller.\+js}}
+\subsubsection[{\texorpdfstring{top\+Left}{topLeft}}]{\setlength{\rightskip}{0pt plus 5cm}const top\+Left = \mbox{[}40.\+0,0.\+0,75.\+0,0.\+0,0.\+0\mbox{]}}\hypertarget{RobotArmController_8js_a2f7d0ac9a16842ea88d3f09432aeab30}{}\label{RobotArmController_8js_a2f7d0ac9a16842ea88d3f09432aeab30}
+
+
+Contiene las coordenadas para referenciarse a la posicion de arriba a la izquierda utilizada. 
+
+\index{Robot\+Arm\+Controller.\+js@{Robot\+Arm\+Controller.\+js}!top\+Right@{top\+Right}}
+\index{top\+Right@{top\+Right}!Robot\+Arm\+Controller.\+js@{Robot\+Arm\+Controller.\+js}}
+\subsubsection[{\texorpdfstring{top\+Right}{topRight}}]{\setlength{\rightskip}{0pt plus 5cm}const top\+Right = \mbox{[}-\/40.\+0,0.\+0,75.\+0,0.\+0,0.\+0\mbox{]}}\hypertarget{RobotArmController_8js_a69751365303ed140fcfe82c3d99f8e8d}{}\label{RobotArmController_8js_a69751365303ed140fcfe82c3d99f8e8d}
+
+
+Contiene las coordenadas para referenciarse a la posicion de arriba a la derecha utilizada. 
+
