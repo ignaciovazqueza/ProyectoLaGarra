@@ -1,0 +1,95 @@
+
+<!DOCTYPE html>
+<!--
+  Google HTML5 slide template
+  URL: http://code.google.com/p/html5slides/
+-->
+<html>
+  <head>
+    <title>Presentation</title>
+
+    <meta charset='utf-8'>
+    <script src='./html5slides/slides.js'></script>
+
+    <!-- Hand demo -->
+    <script type="text/javascript" src="../jshg/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../jshg/compatibility.js"></script>
+    <script type="text/javascript" src="../jshg/jshg.js"></script>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="../css/pure-min.css">
+    <link rel="stylesheet" href="./index.css">
+  </head>
+  
+  <body style="display:none">
+    <div class='gesture-div'>
+      <div style="margin-top:50%; margin-left: 13vw;" id="gestureShownHere"></div>
+      <p align="center" style="margin-top:5px;">
+        <a class="button-jshg button-start pure-button" onClick="JSHGToggle($(this))" target="new">Comenzar Reconocimiento</a>
+      </p>
+    </div>
+
+       <article class='smaller'>
+        <h3 style="text-align:center; padding-top:15px;">
+          PROYECTO LA GARRA
+        </h3>
+        <div id="learningShownHere" class="learning-div"></div>
+      </article>
+     <script type="text/javascript">
+        var currentGesture = null;
+        var firstTime = true;
+        function JSHGToggle(toggleBut) {
+            toggleBut.removeClass("button-stop");
+            toggleBut.removeClass("button-start");
+            if (JSHG.isRunning()) {
+              JSHG.stop();
+              toggleBut.addClass("button-start");
+              toggleBut.html("Comenzar Reconocimiento");
+            } else {
+              if (firstTime) {
+                //curSlide = 1;
+                //updateSlides();
+                JSHG.learnSkinColor();
+                $("#startInstruction").hide();
+              } else {
+                JSHG.run();
+              }
+              toggleBut.addClass("button-stop");
+              toggleBut.html("Terminar");
+            }
+            firstTime = false;
+        }
+
+        var finishLearning = function() {
+          $("#startInstruction").show();
+        }
+
+        var actionMapper = function(gesture) {
+            if (currentGesture != null && currentGesture.isSameRelativePos(gesture)) return;
+            if (gesture.isLeft) {
+                console.log("moviendo a der");
+            } else if (gesture.isRight) {
+                console.log("moviendo a izq");
+            }else if(gesture.isUp){
+                console.log("moviendo arriba");
+            }else if(gesture.isDown){
+                console.log("moviendo abajo");
+            };
+            currentGesture = gesture;
+        }
+        JSHG.init({
+            "actionCallback": actionMapper, 
+            "learnCallback": finishLearning,
+            "learnDivId": "learningShownHere",
+            "gestureDivId": "gestureShownHere",
+            "settings": {
+              "learningCountDown_": 10, 
+              "cameraWidth": 1000, 
+              "cameraHeight": 700, 
+              "gestureDisplayWidth": 900, 
+              "gestureDisplayHeight": 700
+            },
+        });
+    </script> 
+  </body>
+</html>
